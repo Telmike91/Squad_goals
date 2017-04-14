@@ -41,16 +41,16 @@ A játék véget ér, ha a legfelső, rejtett sorba kerül egy lerakott tetromin
 #### 2.1 Felhasználói-felület
 
 **Főoldal**
-![](/images/mockup/index.png)
+![](/imgs/mockup/index.png)
 
 **Új játék**
-![](/images/mockup/game.png)
+![](/imgs/mockup/game.png)
 
 **Beállítások**
-![](/images/mockup/settings.png)
+![](/imgs/mockup/settings.png)
 
 **Toplista**
-![](/images/mockup/toplist.png)
+![](/imgs/mockup/toplist.png)
 
 ### 2.2 Adatmodell és adatbázisterv
 Adatbázisban tároljuk a játékosok nevét és elért pontszámát.
