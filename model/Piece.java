@@ -25,7 +25,7 @@ public class Piece{
 		
 		for(Coordinate coordinate : pieceCoordinates){
 			if(coordinate.getY() > this.maxWidth){
-				this.maxWidth = coordinate.getX();
+				this.maxWidth = coordinate.getY();
 			}
 		}
 	}
