@@ -3,46 +3,42 @@ package model;
 
 public class Field{
 	private FieldState fieldState;
-	private Color color;
+	private PieceColor color;
 	private int x;
 	private int y;
 	
 	public Field(int x, int y){
-		this.fieldState = FieldState.EMPTY;
-		this.color = Color.DEFAULT;
-		this.x = x;
-		this.y = y;
+            this.fieldState = FieldState.EMPTY;
+            this.color = PieceColor.DEFAULT;
+            this.x = x;
+            this.y = y;
 	}
 	
 	public Field getField(int x, int y){
-		if (this.x == x && this.y == y){
-			return this;
-		}else{
-			return null;
-		}
+            if (this.x == x && this.y == y){
+                return this;
+            } else {
+                return null;
+            }
 	}
 		
-	public boolean isEmpty(){
-		if(this.fieldState.equals(FieldState.EMPTY)){
-			return true;
-		}
-		
-		return false;
+	public boolean isEmpty(){		
+            return this.fieldState.equals(FieldState.EMPTY);
 	}
 	
 	public FieldState getFieldState(){
-		return this.fieldState;
+            return this.fieldState;
 	}
 	
-	public Color getColor(){
-		return this.color;
+	public PieceColor getColor(){
+            return this.color;
 	}
 	
 	public void setFieldState(FieldState fieldState){
-		this.fieldState = fieldState;
+            this.fieldState = fieldState;
 	}
 	
-	public void setColor(Color color){
-		this.color = color;
+	public void setColor(PieceColor color){
+            this.color = color;
 	}
 }

@@ -10,8 +10,16 @@ public class Menu extends JPanel {
     private final JButton _settings;
     private final JButton _topList;
     private final JButton _exit;
+
+    private int test;
     
-    public Menu(MainWindow w) {       
+    @Override
+    public void repaint() {
+        super.repaint();
+        System.out.println("Testing" + test++);
+    }
+    public Menu(MainWindow w) {      
+        test = 0;
         _menuText = new JLabel("Tetris");
         _newGame = new JButton("New Game");
         _settings = new JButton("Settings");

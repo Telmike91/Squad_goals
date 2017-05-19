@@ -10,14 +10,18 @@ import java.awt.*;
  * 
  */
 public class MainWindow extends JFrame {
-    private JPanel _content;
+    private Menu _menuPanel;
+    private Settings _settingsPanel;
+    private TopList _topListPanel;
+    private GamePanel _gamePanel;
+    private JPanel _currPanel;
     
     /**
      * Creates the main window. 
      * @param name name of the window. In this case it should be "Tetris"     
      */
     public MainWindow(String name) {
-        super(name);               
+        super(name);         
         super.setLayout(new BorderLayout());
     }
     
@@ -28,12 +32,18 @@ public class MainWindow extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);       
         this.setMinimumSize(new Dimension(400,400));
         
-        this._content = new Menu(this);
-        add(_content, BorderLayout.CENTER);     
+        
+        this._menuPanel = new Menu(this);        
+        this._currPanel = _menuPanel;
+        this._settingsPanel = new Settings(this);
+        this._topListPanel = new TopList(this);
+        this._gamePanel = new GamePanel(this);        
+        _gamePanel.setFocusable(true);  
+        add(_menuPanel, BorderLayout.CENTER);     
                 
         this.setVisible(true);
     } 
-    
+            
     /**
      * 
      * @param which "which" describes which panel should the program change to
@@ -46,25 +56,33 @@ public class MainWindow extends JFrame {
      * </ul>
      */
     public void changePanel(String which) {
-        _content.removeAll();       
+        remove(_currPanel);
         switch(which) {
             case "menu":
-                _content = new Menu(this);
+                add(_menuPanel);
+                _currPanel = _menuPanel;
                 break;
             case "topList":
-                _content = new TopList(this);
+                add(_topListPanel);
+                _currPanel = _topListPanel;
+                _topListPanel.refreshTopList();
                 break;
             case "settings":
-                _content = new Settings(this);
+                add(_settingsPanel);
+                _currPanel = _settingsPanel;
                 break;
             case "newGame":
-                _content = new GamePanel(this);
+                add(this._gamePanel);
+                _currPanel = _gamePanel;
+                _gamePanel.requestFocus();
+                _gamePanel.startGame(this, _settingsPanel.getColors());
                 break;
             default:
                 System.exit(1);
-        }        
-        this.add(_content, BorderLayout.CENTER);
-        this.revalidate();
+        }     
+        pack();
+        revalidate();
+        repaint();
     }
     
     /**
@@ -75,4 +93,5 @@ public class MainWindow extends JFrame {
         final MainWindow mainWindow = new MainWindow("Tetris");
         mainWindow.init();
     }
+
 }
