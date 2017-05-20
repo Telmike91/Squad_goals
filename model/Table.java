@@ -6,7 +6,7 @@ package model;
 public class Table{
 	private int height;
 	private int width;
-	public Field[][] fields;
+	private Field[][] fields;
 	
 	public Table(int height, int width){
 		this.height = height;
@@ -98,8 +98,25 @@ public class Table{
 		return false;
 	}
 	
-	//ellenőrzi, hogy tele van-e a sor, ha igen akkor teljesen kiűríti azt, majd lejebb tol minden felette levő sort egyel a shiftRows fv-ben
-	public boolean clearRow(int height){
+	public int clearRows(){
+		int n = 0;
+		
+		for(int i = 0; i < this.height; ++i){
+			if(clearRow(i)){
+				n += 1;
+			}
+		}
+		
+		int s = 0;
+		
+		for(int i = 0; i < n; ++i){
+			s += 100*(2^n);
+		}
+		
+		return s;
+	}
+	
+	private boolean clearRow(int height){
 		for(int i = 0; i < this.width; ++i){
 			if(this.fields[height][i].isEmpty()){
 				return false;
@@ -123,5 +140,9 @@ public class Table{
 				fields[i][j].setColor(fields[i+1][j].getColor());
 			}
 		}
+	}
+	
+	public Field[][] getFields(){
+		return fields;
 	}
 }
