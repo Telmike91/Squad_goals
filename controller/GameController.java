@@ -74,13 +74,15 @@ public class GameController implements ActionListener,
             case 65:
             case 37:
                 if(!_gameOver) {
-                    _model.move(Direction.LEFT);
+                    _model.moveLeftRight(Direction.LEFT);
+                    _gp.repaint();
                 }
                 break;
             case 68:
             case 39:
                 if(!_gameOver) {
-                    _model.move(Direction.RIGHT);
+                    _model.moveLeftRight(Direction.RIGHT);
+                    _gp.repaint();
                 }
                 break;
             case 83:
@@ -141,16 +143,15 @@ public class GameController implements ActionListener,
     @Override
     public void actionPerformed(ActionEvent e) {              
         if(!_model.move(Direction.DOWN)) {
+            int temp = _model.clearRows();
+            if(temp > 0) {
+                _score = _score + temp;
+            }
             Collections.shuffle(_randomPiece);
             if(!_model.enterPiece(_randomPiece.get(0))) {
                 _gp.gameOver();
                 _gameOver = true;
                 _timer.stop();
-            } else {
-                int temp = _model.clearRows();
-                if(temp > 0) {
-                    _score = _score + temp;
-                }
             }
         }
         _gp.repaint();        
@@ -177,7 +178,7 @@ public class GameController implements ActionListener,
 
     @Override
     public void focusGained(FocusEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        _timer.start();
     }
 
     /**

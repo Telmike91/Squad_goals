@@ -85,16 +85,17 @@ public class GamePanel extends JPanel {
                         (_rows - i - 1) * this.getHeight() / _rows , 
                         ((this.getWidth() - 100)  / _cols) - 1, 
                         (this.getHeight() / _rows) - 1);
+                
             }
         }
         _return.setBounds(this.getWidth() - 100, this.getHeight() - 20, 100, 20);
-        
+                
         g.setFont(new Font("Times New Roman", Font.BOLD, 16));
         g.setColor(Color.ORANGE);
         g.fillRect(this.getWidth() - 100, 0, 100, this.getHeight());        
         g.setColor(Color.BLACK);        
         g.drawString("Score", this.getWidth() - 90, 25);
-        g.drawString("10000000" + _controller.getScore(), this.getWidth() - 90, 50);
+        g.drawString("" + _controller.getScore(), this.getWidth() - 90, 50);
     }
 
     /**
