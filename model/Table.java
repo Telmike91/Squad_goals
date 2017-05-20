@@ -116,7 +116,7 @@ public class Table {
                 break;
             case RIGHT:
 				for (int i = 0; i < this.height; ++i) {
-                    for (int j = this.width-2; j >= 0; ++j) {
+                    for (int j = this.width-2; j >= 0; --j) {
 						if (fields[i][j].isMoveable() && !(fields[i][j+1].isEmpty()) && !(fields[i][j+1].isMoveable())){
 							return false;
 						}
@@ -130,7 +130,7 @@ public class Table {
 				}
 				
 				for (int i = 0; i < this.height; ++i) {
-                    for (int j = 1; j < this.width; ++j) {
+                    for (int j = this.width-2; j >= 0; --j) {
 						fields[i][j+1].setFieldState(fields[i][j].getFieldState());
 						fields[i][j+1].setColor(fields[i][j].getColor());
 						fields[i][j+1].start();
@@ -155,7 +155,7 @@ public class Table {
     }
 
     public boolean flip() {
-        return false;
+        
     }
 
     public int clearRows() {
