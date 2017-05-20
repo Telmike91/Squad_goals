@@ -2,8 +2,7 @@ Model osztály hozza létre a játéktáblát, ezen keresztül lehet azt befoly�
 
 enterPiece függvény: egy PieceType típúsú enumot kér (ami véletlenszerűen van generálva minden meghívás esetén), ha a visszatérési értéke igaz, akkor a blokk bekerült a játéktáblára, ha hamis akkor a játék véget ért
 
-move függvény: egy Direction típúsú enumot kér, ez lehet vagy lefele (ami bizonyos időnként automatikusan történik a kliensben) vagy jobbra/balra a játékos interakciója alapján, visszatérési értéke igaz, ha a mozgás végbe tudott menni, hamis ha nem
-ha hamis eredményt kapunk a lefele mozgatás esetén, akkor az azt jelenti, hogy a blokk töbett nem mozgatható, meg kell hívni az összes sorra a clearRow függvényt
+move függvény: egy Direction típúsú enumot kér, ez lehet vagy lefele (ami bizonyos időnként automatikusan történik a kliensben) vagy jobbra/balra a játékos interakciója alapján, visszatérési értéke igaz, ha a mozgás végbe tudott menni, hamis ha nem, ha hamis eredményt kapunk a lefele mozgatás esetén, akkor az azt jelenti, hogy a blokk töbett nem mozgatható, meg kell hívni a clearRows függvényt
 
 flip függvény: játékos gombnyomására kell meghívni, fordít 90 fokot az éppen játékba levő blokkon, visszatérési értéke hamis ha ezt nem lehet végrehajtani (valami útban van), igaz ha lehet
 
