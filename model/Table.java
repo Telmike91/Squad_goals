@@ -345,6 +345,7 @@ public class Table {
         for (int i = 0; i < this.height; i++) {
             if (clearRow(i)) {
                 n += 1;
+				i -= 1;
             }
         }
 
