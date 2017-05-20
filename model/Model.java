@@ -106,7 +106,6 @@ public class Model {
     //	STRAIGHT, SQUARE, TRIANGLE, RTURN, LTURN, LEFTL, RIGHTL
 
     public void setColor(PieceColor color, PieceType which) {
-        System.out.println("Tset");
         switch (which) {
             case STRAIGHT:
                 if(color == PieceColor.DEFAULT)
@@ -157,5 +156,9 @@ public class Model {
     
     public Field[][] getFields() {
         return table.getFields();
+    }
+
+    public boolean moveLeftRight(Direction direction) {
+        return table.moveLeftRight(direction);
     }
 }

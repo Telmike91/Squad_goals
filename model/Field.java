@@ -26,19 +26,11 @@ public class Field {
     }
 
     public boolean isEmpty() {
-        if (this.fieldState.equals(FieldState.EMPTY)) {
-            return true;
-        }
-
-        return false;
+        return this.fieldState.equals(FieldState.EMPTY);
     }
 
     public boolean isMoveable() {
-        if (this.isMoveable) {
-            return true;
-        }
-
-        return false;
+        return this.isMoveable;
     }
 
     public FieldState getFieldState() {
