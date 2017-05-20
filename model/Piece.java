@@ -5,11 +5,11 @@ import java.util.*;
 
 public class Piece{
 	private ArrayList<Coordinate> pieceCoordinates;
-	private Color color;
+	private PieceColor color;
 	private int maxHeight;
 	private int maxWidth;
 	
-	public Piece(ArrayList<Coordinate> pieceCoordinates, Color color){
+	public Piece(ArrayList<Coordinate> pieceCoordinates, PieceColor color){
 		this.pieceCoordinates = pieceCoordinates;
 		this.color = color;
 		
@@ -28,13 +28,13 @@ public class Piece{
 				this.maxWidth = coordinate.getY();
 			}
 		}
-	}
+	}                
 	
 	public ArrayList<Coordinate> getPieceCoordinates(){
 		return pieceCoordinates;
 	}
 	
-	public Color getColor(){
+	public PieceColor getColor(){
 		return this.color;
 	}
 	
@@ -45,5 +45,9 @@ public class Piece{
 	public int getMaxWidth(){
 		return this.maxWidth;
 	}
+
+    public void setColor(PieceColor color) {
+        this.color = color;
+    }
 
 }
