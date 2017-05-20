@@ -88,10 +88,58 @@ public class Table {
 
                 break;
             case LEFT:
-
+				for (int i = 0; i < this.height; ++i) {
+                    for (int j = 1; j < this.width; ++j) {
+						if (fields[i][j].isMoveable() && !(fields[i][j-1].isEmpty()) && !(fields[i][j-1].isMoveable())){
+							return false;
+						}
+					}
+				}
+				
+				for (int i = 0; i < this.height; ++i){
+					if(fields[i][0].isMoveable()){
+						return false;
+					}
+				}
+				
+				for (int i = 0; i < this.height; ++i) {
+                    for (int j = 1; j < this.width; ++j) {
+						fields[i][j-1].setFieldState(fields[i][j].getFieldState());
+						fields[i][j-1].setColor(fields[i][j].getColor());
+						fields[i][j-1].start();
+						
+						fields[i][j].setFieldState(FieldState.EMPTY);
+                        fields[i][j].setColor(PieceColor.DEFAULT);
+                        fields[i][j].stop();
+					}
+				}
                 break;
             case RIGHT:
-
+				for (int i = 0; i < this.height; ++i) {
+                    for (int j = this.width-2; j >= 0; ++j) {
+						if (fields[i][j].isMoveable() && !(fields[i][j+1].isEmpty()) && !(fields[i][j+1].isMoveable())){
+							return false;
+						}
+					}
+				}
+				
+				for (int i = 0; i < this.height; ++i){
+					if(fields[i][width-1].isMoveable()){
+						return false;
+					}
+				}
+				
+				for (int i = 0; i < this.height; ++i) {
+                    for (int j = 1; j < this.width; ++j) {
+						fields[i][j+1].setFieldState(fields[i][j].getFieldState());
+						fields[i][j+1].setColor(fields[i][j].getColor());
+						fields[i][j+1].start();
+						
+						fields[i][j].setFieldState(FieldState.EMPTY);
+                        fields[i][j].setColor(PieceColor.DEFAULT);
+                        fields[i][j].stop();
+					}
+				}
                 break;
         }
 
