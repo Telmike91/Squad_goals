@@ -7,7 +7,6 @@ import java.awt.*;
  * <p>
  * The main window of the program.
  * </p>
- * 
  */
 public class MainWindow extends JFrame {
     private Menu _menuPanel;
@@ -49,8 +48,8 @@ public class MainWindow extends JFrame {
      * @param which "which" describes which panel should the program change to
      * possible values:
      * <ul>
-     *  <li> menu</li>
-     *  <li> topList</li>
+     *  <li>menu</li>
+     *  <li>topList</li>
      *  <li>settings</li>
      *  <li>newGame</li>
      * </ul>
@@ -75,7 +74,7 @@ public class MainWindow extends JFrame {
                 add(this._gamePanel);
                 _currPanel = _gamePanel;
                 _gamePanel.requestFocus();
-                _gamePanel.startGame(this, _settingsPanel.getColors());
+                _gamePanel.startGame(_settingsPanel.getColors());
                 break;
             default:
                 System.exit(1);

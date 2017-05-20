@@ -9,6 +9,9 @@ import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import model.Player;
 
+/**
+ * A toplista grafikus felülete 
+ */
 public class TopList extends JPanel {
     private final JPanel _scoreList;
     private final JButton _return;

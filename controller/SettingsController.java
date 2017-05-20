@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import graphics.ColorComboBox;
@@ -12,8 +7,7 @@ import java.awt.event.ActionListener;
 import model.PieceColor;
 
 /**
- *
- * @author Miki
+ * 
  */
 public class SettingsController implements ActionListener {
     private final MainWindow _w;
@@ -31,7 +25,6 @@ public class SettingsController implements ActionListener {
             case "ComboBox":
                 ColorComboBox cb = (ColorComboBox)e.getSource();
                 String color = (String)cb.getSelectedItem();
-                System.out.println("Test");
                 switch(color) {
                     case "Blue":
                         cb._color = PieceColor.BLUE;

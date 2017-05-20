@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Ezen a grafikai felületen lehet továbbmenni a többi ablakra, illetve kilépni
+ * a főprogramból
+ */
 public class Menu extends JPanel {
     private final JLabel _menuText;
     private final JButton _newGame;
@@ -18,9 +22,14 @@ public class Menu extends JPanel {
         super.repaint();
         System.out.println("Testing" + test++);
     }
+    /**
+     * 
+     * @param w - a főablak referenciája, hogy a changePanel-t megtudjuk hívni
+     */
     public Menu(MainWindow w) {      
         test = 0;
         _menuText = new JLabel("Tetris");
+        _menuText.setFont(new Font("Times New Roman", Font.BOLD, 20));        
         _newGame = new JButton("New Game");
         _settings = new JButton("Settings");
         _topList = new JButton("Top list");

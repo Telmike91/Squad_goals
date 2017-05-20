@@ -1,13 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.sql.*;
 import java.util.ArrayList;
 import model.Player;
+
+/**
+ * <p>
+ * Ezzel a controllerrel tartjuk majd a kapcsolatot az adatbázissal
+ * Ezen keresztül INSERT-elhetünk és SELECT-elhetőnk adatokat.
+ * </p>
+ */
 public class TopListController {
     private Connection c;
     private Statement stmt;
