@@ -4,13 +4,11 @@
 A főmenü: Új játék kezdése, Beállítások, Toplista, Kilépés
 
 #### Új játék
-A felhasználó a neve megadása után (regisztráció?) új játékot kezdhet. A játék végén megjelenik a toplista, és az aktuális felhasználó láthatja, hányadik helyet foglalja el.
+A felhasználó új játékot kezdhet. A játék végén megjelenik a toplista, és az aktuális felhasználó láthatja, hányadik helyet foglalja el.
 
 #### Beállítások
 * Különböző tetrominók színeinek megváltoztatása
     A felhasználó megváltoztathatja a tetrominók színeit, illetve visszaállíthatja az alapértelmezettre.
-* Többszemélyes játék
-* Sandbox mód
 * Fogalomtár
 
 #### Toplista
@@ -31,10 +29,10 @@ A tetrominok (formák) alalpértelmezett alakja és színei:
 * Narancssárga L (4 blokkból álló fordított J/’right gun’)
 
 A tetrominók a hosszabbik felükkel lefelé jelennek meg a pálya tetejének a közepén, illetve bal-közepén. A következő tetronimo formája véletlenszerű.
-A tetronimók pozícióját a fel-le-jobbra-balra nyilakkal, vagy a WASD billentyűkkel lehet változtatni, forgatni pedig a shift billentyűkkel. Az aktuális tetronimót le lehet ejteni a space billentyűvel (hard drop).
+A tetronimók pozícióját a fel-le-jobbra-balra nyilakkal, vagy a WASD billentyűkkel lehet változtatni, forgatni pedig a shift billentyűvel. Az aktuális tetronimót le lehet ejteni a space billentyűvel (hard drop).
 
 A játékos akkor kap pontot, hogyha egy sor betelik, ekkor az a sor eltűnik és a felette levő sorok lejjebb kerülnek.
-A játék véget ér, ha a legfelső, rejtett sorba kerül egy lerakott tetromino része.
+A játék véget ér, ha a legfelső, rejtett sorba kerül egy lerakott tetromino része. Ha véget ért, a játékos beírhatja a nevét egy dialógus ablakba, amit majd egy adatbázisban lement az alkalmazás.
 
 ### 2.	Tervezés
 
@@ -63,7 +61,7 @@ Adatbázisban tároljuk a játékosok nevét és elért pontszámát.
 #### 3.1 Felhasznált technológiák
 - Git, Github
 - Java
-- (XXXsql ?)
+- SqlLite
 
 ### 4. Tesztelés
 
