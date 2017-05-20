@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+   <project name="Tetris" default="build">
+   <property name="build.dir" value="classes" />
+   <property name="src.dir" value="${basedir}" />
+	
+   <target name="build" description="Compile source tree java files">
+      <mkdir dir="${build.dir}"/>
+      <javac destdir="${build.dir}" source="8" target="8">
+         <src path="${src.dir}"/>
+		 <classpath path="${basedir}" />
+      </javac>
+   </target>
+   
+   <target name="clean">
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.class"/>
+			</fileset>
+		</delete>
+		<delete file="Tetris.jar" />
+		<delete dir="${build.dir}" />
+   </target>
+   
+   <target name="run" depends="createJar">
+	   <java fork="true" jar="Tetris.jar">
+
+	   </java>
+   </target>
+   
+	<target name="createJar" description="jars" depends="build">
+		<jar jarfile="Tetris.jar" basedir="${build.dir}"  includes="**/*.class">
+			<manifest>
+				<attribute name="Main-Class" value="graphics.MainWindow" />
+				<attribute name="Class-Path" value="sqlite-jdbc-3.18.0.jar"/>
+			</manifest>
+		</jar>
+	</target>
+   
+</project>
