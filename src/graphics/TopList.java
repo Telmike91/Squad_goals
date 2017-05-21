@@ -18,6 +18,10 @@ public class TopList extends JPanel {
     private final ArrayList<JLabel> _scorers;
     private final TopListController _topListController;
     
+    /**
+     * Egyszerű konstruktor. Létrehozza a toplista view-ját
+     * @param w a főbalblak referenciája
+     */
     public TopList(MainWindow w) {
         _scoreList = new JPanel();
         _scoreList.setLayout(new GridBagLayout());

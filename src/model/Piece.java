@@ -1,7 +1,7 @@
 package model;
 
 /**
- * ezzel a classal lehet megalkotni a sémákat amik a konkrét táblára kerülnek,
+ * Ezzel a classal lehet megalkotni a sémákat amik a konkrét táblára kerülnek,
  * azonban irányítani függvények megadásával ezt nem lehet!
  */
 import java.util.*;

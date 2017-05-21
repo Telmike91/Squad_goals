@@ -1,6 +1,8 @@
 package model;
-//a nagy tábla építőkövei, jelenleg ezek a mezők figyelik a játék állapotát
 
+/**
+ * A nagy tábla építőkövei, jelenleg ezek a mezők figyelik a játék állapotát
+ */
 public class Field {
 
     private FieldState fieldState;

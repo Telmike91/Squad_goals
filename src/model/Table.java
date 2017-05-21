@@ -370,7 +370,7 @@ public class Table {
 
     /**
      * Kitörli a megfelelő sorokat.
-     * @return Visszadja a pontszámot. Képlet: 100 * (2^(törölt sorok száma));
+     * @return Visszadja a pontszámot. Képlet: 100 * (2^(i));
      */
     public int clearRows() {
         int n = 0;
@@ -385,7 +385,7 @@ public class Table {
         int s = 0;
 
         for (int i = 0; i < n; ++i) {
-            s += 100 * (Math.pow(2, n));
+            s += 100 * (Math.pow(2, i));
         }
 
         return s;

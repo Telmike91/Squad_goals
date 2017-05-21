@@ -10,7 +10,6 @@ import java.awt.*;
  */
 public class MainWindow extends JFrame {
     private Menu _menuPanel;
-    private Settings _settingsPanel;
     private TopList _topListPanel;
     private GamePanel _gamePanel;
     private JPanel _currPanel;
@@ -30,11 +29,9 @@ public class MainWindow extends JFrame {
     public void init() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);       
         this.setMinimumSize(new Dimension(400,400));
-        
-        
+               
         this._menuPanel = new Menu(this);        
         this._currPanel = _menuPanel;
-        this._settingsPanel = new Settings(this);
         this._topListPanel = new TopList(this);
         this._gamePanel = new GamePanel(this);        
         _gamePanel.setFocusable(true);  
@@ -66,15 +63,11 @@ public class MainWindow extends JFrame {
                 _currPanel = _topListPanel;
                 _topListPanel.refreshTopList();
                 break;
-            case "settings":
-                add(_settingsPanel);
-                _currPanel = _settingsPanel;
-                break;
             case "newGame":
                 add(this._gamePanel);
                 _currPanel = _gamePanel;
                 _gamePanel.requestFocus();
-                _gamePanel.startGame(_settingsPanel.getColors());
+                _gamePanel.startGame();
                 break;
             default:
                 System.exit(1);

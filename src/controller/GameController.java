@@ -19,12 +19,14 @@ public class GameController implements ActionListener,
     private final Timer _timer;
     private final GamePanel _gp;
     private final ArrayList<PieceType> _randomPiece;
+    private PieceType _nextPiece;
     private boolean _gameOver = false;
     private final int INIT_SPEED = 1000;
     private final int SPEED_UP = 200;
     private final int _rows;
     private final int _cols;
     private int _score;
+    private final Model _nextPieceGraphics;
 
     /**
      * Konstruktor. Beállítja a megfelelő mezőket és inicializálja a random Tömböt
@@ -36,11 +38,12 @@ public class GameController implements ActionListener,
         _rows = rows;
         _cols = cols;
         _score = 0;
+        _nextPieceGraphics = new Model(4,4);
         _model = new Model(rows, cols);
         _timer = new Timer(INIT_SPEED, this);
         _randomPiece = new ArrayList<>();
         _randomPiece.addAll(Arrays.asList(PieceType.values()));
-        _gp = gp;    
+        _gp = gp;           
     }  
     
     /**
@@ -148,14 +151,27 @@ public class GameController implements ActionListener,
             if(temp > 0) {
                 _score = _score + temp;
             }
-            Collections.shuffle(_randomPiece);
-            if(!_model.enterPiece(_randomPiece.get(0))) {
+            if(!_model.enterPiece(_nextPiece)) {
                 _gp.gameOver();
                 _gameOver = true;
                 _timer.stop();
+                
+            } else {
+                Collections.shuffle(_randomPiece);
+                _nextPiece = _randomPiece.get(0);
+                _nextPieceGraphics.resetTable();
+                _nextPieceGraphics.enterPiece(_nextPiece);
             }
         }
         _gp.repaint();        
+    }
+    
+    /**
+     * Egyszerű getter
+     * @return Visszaadja a nextPieceGraphics referenciáját
+     */
+    public Field[][] getNextPieceGraphics() {
+        return _nextPieceGraphics.getFields();
     }
     
     /**
@@ -166,11 +182,16 @@ public class GameController implements ActionListener,
         _timer.start();
         _score = 0;
         _model.resetTable();
+        _nextPieceGraphics.resetTable();
         Collections.shuffle(_randomPiece);
-        if(!_model.enterPiece(_randomPiece.get(0))) {
+        _nextPiece = _randomPiece.get(0);
+        if(!_model.enterPiece(_nextPiece)) {
             _timer.stop();
             _gp.gameOver();            
         }
+        
+        _nextPiece = _randomPiece.get(1);
+        _nextPieceGraphics.enterPiece(_nextPiece);                
         _gp.repaint();
     }
 
