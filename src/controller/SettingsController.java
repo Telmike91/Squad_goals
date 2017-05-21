@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 import model.PieceColor;
 
 /**
- * 
+ * Ezzel a kontrollerrel állítjuk be a színeket és a changePanellel átállítjuk a
+ * jelenlegi ablakot.
  */
 public class SettingsController implements ActionListener {
     private final MainWindow _w;
@@ -16,6 +17,11 @@ public class SettingsController implements ActionListener {
         _w = w;
     }
     
+    /**
+     * A kiváltó eventtől függően modósítja a megjelnített ablakot, vagy beállítja
+     * a comboboxban jelzett színt
+     * @param e a kiváltó event paraméter
+     */
     @Override
     public void actionPerformed(ActionEvent e) { 
         switch(e.getActionCommand()) {

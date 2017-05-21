@@ -9,15 +9,28 @@ public class Coordinate{
 	private int x;
 	private int y;
 	
+        /**
+         * Egyszerű konstruktor, amivel beállítjuk a koordinátákat
+         * @param x az X koordináta azaz hanyadik sor
+         * @param y az Y koordináta azaz hanyadik oszlop
+         */
 	public Coordinate(int x, int y){
 		this.x = x;
 		this.y = y;
 	}
 	
+        /**
+         * Egyszerű getter
+         * @return az X koordináta azaz hanyadik sor
+         */
 	public int getX(){
 		return this.x;
 	}
 	
+        /**
+         * Egyszerű getter
+         * @return Az Y koordináta azaz hanyadik oszlop
+         */
 	public int getY(){
 		return this.y;
 	}
