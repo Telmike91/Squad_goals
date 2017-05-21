@@ -1,6 +1,9 @@
 package model;
-//ez a class lesz felelős a játéktábla létrehozásáért és a controllnak az adatok továbbadásával
 
+
+/**
+ * Ez a class lesz felelős a játéktábla létrehozásáért és a controllnak az adatok továbbadásával 
+ */
 import java.util.*;
 
 public class Model {
@@ -14,6 +17,11 @@ public class Model {
     private Piece leftl;
     private Piece rightl;
     
+    /**
+     * Egy egyszerű Model konstruktor, ami létrehozza a táblát és a Piece-ket
+     * @param x Tábla szélessége
+     * @param y Tábla magassága
+     */
     public Model(int x, int y) {
         this.table = new Table(x, y);
         
@@ -67,10 +75,18 @@ public class Model {
         this.rightl = new Piece(rightlC, PieceColor.ORANGE);
     }
     
+    /**
+     * Újraindítja a táblát. A játék újrakezdéséért szükséges ez a metódus
+     */
     public void resetTable() {
         table.reset();
     }
     
+    /**
+     * Egy megadott PieceType-t lerak a tábla tetejének a közepére
+     * @param pieceType - Az adott PieceType
+     * @return lerakható-e az adott Piece
+     */
     public boolean enterPiece(PieceType pieceType) {        
         switch (pieceType) {
             case STRAIGHT:
@@ -92,19 +108,35 @@ public class Model {
         return false;
     }
     
-    public boolean move(Direction direction) {
-        return table.move(direction);
+    /**
+     * A jelenlegi Piece-t mozgatja lefele
+     * @return Ha mozgatható igazat ad vissza különben hamis.
+     */
+    public boolean move() {
+        return table.move();
     }
     
+    /**
+     * Megforgatja a jelenlegi Piece-t
+     * @return Ha forgatható igaz, különben hamis
+     */
     public boolean flip() {
         return table.flip();
     }
     
+    /**
+     * Kitörli azokat a sorokat, amik tele vannak.
+     * @return Visszaadja a pontszámot. Minél nagyobb annál jobb.
+     */
     public int clearRows() {
         return table.clearRows();
     }
-    //	STRAIGHT, SQUARE, TRIANGLE, RTURN, LTURN, LEFTL, RIGHTL
-
+    
+    /**
+     * Beállítja a színeket a különböző Pieceknek, amiket a Settingsből kapunk
+     * @param color Milyen szinű legyen
+     * @param which Melyik típusnak állítsuk be
+     */
     public void setColor(PieceColor color, PieceType which) {
         switch (which) {
             case STRAIGHT:
@@ -123,7 +155,6 @@ public class Model {
                 if(color == PieceColor.DEFAULT)
                     triangle.setColor(PieceColor.PURPLE);
                 else {
-                    //System.out.println("GREEN");
                     triangle.setColor(color);                
                 }
                 break;
@@ -154,10 +185,19 @@ public class Model {
         }
     }
     
+    /**
+     * Visszaadja a mezők mátrix referenciáját
+     * @return Mezők mátrix referenciája
+     */
     public Field[][] getFields() {
         return table.getFields();
     }
 
+    /**
+     * Az adott Piece-t jobbra vagy balra mozgatja
+     * @param direction vagy jobbra vagy balra.
+     * @return Ha mozgatható igaz, különben hamis.
+     */
     public boolean moveLeftRight(Direction direction) {
         return table.moveLeftRight(direction);
     }

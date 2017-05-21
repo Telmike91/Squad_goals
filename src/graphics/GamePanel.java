@@ -38,8 +38,6 @@ public class GamePanel extends JPanel {
         _return.addActionListener((ActionEvent e) -> {
             w.changePanel("menu");
         });
-
-        super.addMouseListener(_controller);
         super.addKeyListener(_controller);
         super.addFocusListener(_controller);
         super.setLayout(null);        

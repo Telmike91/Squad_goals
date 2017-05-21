@@ -14,8 +14,7 @@ import model.*;
  */
 public class GameController implements ActionListener,
         FocusListener, 
-        KeyListener, 
-        MouseListener {
+        KeyListener {
     private final Model _model;
     private final Timer _timer;
     private final GamePanel _gp;
@@ -112,39 +111,17 @@ public class GameController implements ActionListener,
                 break;                
         }
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        //System.out.println("#X# " + e.getX() + " #Y# " + e.getY());
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    /**
+     * Egy egyszerű Getter
+     * @return Visszaadja a _score
+     */
     public int getScore() {
         return _score;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {              
-        if(!_model.move(Direction.DOWN)) {
+        if(!_model.move()) {
             int temp = _model.clearRows();
             if(temp > 0) {
                 _score = _score + temp;
@@ -159,9 +136,13 @@ public class GameController implements ActionListener,
         _gp.repaint();        
     }
     
+    /**
+     * Elkezdi a játékot. Újrainicializálja a táblát és elkezdi az időzítőt
+     */
     public void startGame() {
         _gameOver = false;
         _timer.start();
+        _score = 0;
         _model.resetTable();
         Collections.shuffle(_randomPiece);
         if(!_model.enterPiece(_randomPiece.get(0))) {
@@ -171,8 +152,11 @@ public class GameController implements ActionListener,
         _gp.repaint();
     }
 
+    /**
+     * Beállítja a különböző Piece-knek a színeit
+     * @param colors egy map amiben a PieceType-hoz hozzárendelt színt tartalmazza.
+     */
     public void setColors(HashMap<PieceType, PieceColor> colors) {
-        System.out.println(colors.size());
         for(PieceType type : colors.keySet()) {
             _model.setColor(colors.get(type), type);
         }
@@ -184,8 +168,9 @@ public class GameController implements ActionListener,
     }
 
     /**
-     * Amikor return-re kattint a játékos akkor elvész a focus azaz befejezte a játékot.
-     * @param e
+     * Amikor return-re kattint vagy a játékos kikattint a képernyőről a játékos 
+     * akkor elvész a focus azaz kilépünk a jelenlegi játékból, illetve szüneteltetjük
+     * @param e A focusLost implementálásából jön
      */
     @Override
     public void focusLost(FocusEvent e) {

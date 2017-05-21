@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Ebben az osztályban tároljuk a játékos nevét és pontszámát.
+ * 
+ */
 public class Player {
     private final String _name;
     private final int _score;
