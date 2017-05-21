@@ -68,7 +68,7 @@ public class TableTest {
         table.reset();
         table.enterPiece(piece);
         for (int i = 0; i < this.height; ++i) {
-            for (int j = 1; j < this.width; ++j) {
+            for (int j = 0; j < this.width; ++j) {
                if(fields[i][j].isMoveable()){
                     fields[i][j - 1].setFieldState(FieldState.OCCUPIED);
                     fields[i][j - 1].stop();
@@ -87,7 +87,7 @@ public class TableTest {
         table.reset();
         table.enterPiece(piece);
         for (int i = 0; i < this.height; ++i) {
-            for (int j = 1; j < this.width; ++j) {
+            for (int j = 0; j < this.width; ++j) {
                if(fields[i][j].isMoveable()){
                     fields[i][j + 1].setFieldState(FieldState.OCCUPIED);
                     fields[i][j + 1].stop();
@@ -182,21 +182,21 @@ public class TableTest {
         table.reset();
         table.enterPiece(piece);
         for (int i = 0; i < this.height; ++i) {
-            for (int j = 1; j < this.width; ++j) {
+            for (int j = 0; j < this.width; ++j) {
                if(fields[i][j].isMoveable()){
                     fields[i - 1][j].setFieldState(FieldState.OCCUPIED);
                     fields[i - 1][j].stop();
                }
             }
         }
-        assertEquals("Mozgathato olyan iranyba, ahova nem szabadna: DOWN", false, table.move(Direction.DOWN));
+        assertEquals("Mozgathato olyan iranyba, ahova nem szabadna: DOWN", false, table.move());
         //DOWN - FALSE 2
         table.reset();
         table.enterPiece(piece);
         for (int j = 0; j < this.width; ++j) {
             fields[0][j].start();
         }
-        assertEquals("Mozgathato olyan iranyba, ahova nem szabadna: DOWN", false, table.moveLeftRight(Direction.LEFT));
+        assertEquals("Mozgathato olyan iranyba, ahova nem szabadna: DOWN", false, table.move());
     }
         
     @Test
@@ -206,17 +206,17 @@ public class TableTest {
         table.enterPiece(piece);
         ArrayList<Coordinate> pieceOriginalCoordinates = new ArrayList<>();
         for (int i = 0; i < this.height; ++i) {
-            for (int j = 1; j < this.width; ++j) {
+            for (int j = 0; j < this.width; ++j) {
                 if(fields[i][j].isMoveable()){
                     pieceOriginalCoordinates.add(new Coordinate(i,j));
                 } 
             }
         }
-        assertEquals("Nem mozgathato olyan iranyba, ahova szabadna: DOWN", true, table.move(Direction.DOWN));
+        assertEquals("Nem mozgathato olyan iranyba, ahova szabadna: DOWN", true, table.move());
         //DOWN - JO HELYRE MOZGATTUK?
         ArrayList<Coordinate> pieceChangedCoordinates = new ArrayList<>();
         for (int i = 0; i < this.height; ++i) {
-            for (int j = 1; j < this.width; ++j) {
+            for (int j = 0; j < this.width; ++j) {
                 if(fields[i][j].isMoveable()){
                     pieceChangedCoordinates.add(new Coordinate(i,j));
                 } 
@@ -233,28 +233,18 @@ public class TableTest {
             }
         }
         assertEquals("Nem mozgathato olyan iranyba, ahova szabadna: DOWN", pieceChangedCoordinates.size(), shouldEqual);
-    }    
+    } 
     
-}
-/*
-
-                for (int i = 1; i < this.height; ++i) {
-                    for (int j = 0; j < this.width; ++j) {
-                        if (this.fields[i][j].isMoveable()) {
-                            fields[i - 1][j].setFieldState(fields[i][j].getFieldState());
-                            fields[i - 1][j].setColor(fields[i][j].getColor());
-                            fields[i - 1][j].start();
-
-                            fields[i][j].setFieldState(FieldState.EMPTY);
-                            fields[i][j].setColor(PieceColor.DEFAULT);
-                            fields[i][j].stop();
-                        }
-                    }
-                }
-
-                break;
+    @Test
+    public void clearRowsTest(){
+        //4 sor kigyulik egyszerre.
+        table.reset();
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < this.width; ++j) {
+                fields[i][j].setFieldState(FieldState.OCCUPIED);
+                fields[i][j].setColor(PieceColor.GREEN);
+            }
         }
-
-        return true;
+        assertEquals("Nem jol szamolja ki a pontszamot.",6400, table.clearRows());
     }
-*/
+}
