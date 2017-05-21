@@ -1,6 +1,8 @@
 package model;
-//a tábla mezőinek állapotkövetésére
 
+/**
+ * A tábla mezőinek állapot követésére 
+ */
 public enum FieldState{
 	EMPTY, OCCUPIED
 }

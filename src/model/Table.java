@@ -1,7 +1,7 @@
 package model;
-//az egész játékmenet központja, ennek a függvényeit hívja meg a control a view műveletei alapján
-//egyelőre úgy van megcsinálva, hogy amint egy sablont a táblára másolt a gép az megszűnik koherens egységként működni
-//nem tudom, hogy ez mennyire jó irány volt, de egyelőre nem akarom újrakezdeni/kijavítani
+/**
+ * Az egész játékmenet központja, ennek a függvényeit hívja meg a control a view műveletei alapján
+ */
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -28,6 +28,9 @@ public class Table {
         this.rotation = 0;
     }
 
+    /**
+     * Reseteli a fieldeket, hogy új játékot tudjunk kezdeni
+     */
     public void reset() {
         for (int i = 0; i < this.height; ++i) {
             for (int j = 0; j < this.width; ++j) {
@@ -54,11 +57,9 @@ public class Table {
                 field.setColor(piece.getColor());
                 field.start();
             } else {
-                System.out.println("FALSE");
                 return false;
             }
         }
-        System.out.println("testing");
         this.rotation = 0;
         return true;
     }
@@ -333,6 +334,12 @@ public class Table {
         return true;
     }
 
+    /**
+     * Visszaadja a forgatási tömböt. 
+     * @param pieceCoords Melyik tömböt forgatjuk
+     * @param around Melyik irányba
+     * @return 
+     */
     private ArrayList<Coordinate> rotateArray(ArrayList<Coordinate> pieceCoords, Coordinate around) {
         ArrayList<Coordinate> newPieceCoords = new ArrayList<Coordinate>();
 
@@ -343,6 +350,12 @@ public class Table {
         return newPieceCoords;
     }
 
+    /**
+     * Elforgatja a megadott koordinátát a megfelelő irányba
+     * @param what Melyik koordinátát
+     * @param around Melyik irányba
+     * @return 
+     */
     private Coordinate rotate(Coordinate what, Coordinate around) {
         Point center = new Point(around.getX(), around.getY());
 
@@ -355,6 +368,10 @@ public class Table {
         return new Coordinate((int) (newX), (int) (newY));
     }
 
+    /**
+     * Kitörli a megfelelő sorokat.
+     * @return Visszadja a pontszámot. Képlet: 100 * (2^(törölt sorok száma));
+     */
     public int clearRows() {
         int n = 0;
 
@@ -374,6 +391,11 @@ public class Table {
         return s;
     }
 
+    /**
+     * Kitörli a height magasságban lévő sort, ha tele van
+     * @param height
+     * @return Ha tele volt akkor igazat vissza különben hamisat
+     */
     private boolean clearRow(int height) {
         for (int i = 0; i < this.width; ++i) {
             if (this.fields[height][i].isEmpty()) {
@@ -391,8 +413,11 @@ public class Table {
         return true;
     }
 
-    private void shiftRows(int height) {
-        System.out.println("MAGASSAG: " + height);
+    /**
+     * Elmozgatja a sort, ha törültünk egy sort
+     * @param height A megfelelő sorban lévő sor mozgatása
+     */
+    private void shiftRows(int height) {       
         for (int i = height; i < this.height - 1; i++) {
             for (int j = 0; j < this.width; j++) {
                 fields[i][j].setFieldState(fields[i + 1][j].getFieldState());
@@ -401,6 +426,10 @@ public class Table {
         }
     }
 
+    /**
+     * Egyszerű getter
+     * @return visszaadja a refernciát
+     */
     public Field[][] getFields() {
         return fields;
     }

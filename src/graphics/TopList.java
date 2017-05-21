@@ -34,6 +34,10 @@ public class TopList extends JPanel {
         super.add(_return, BorderLayout.PAGE_END);         
     }   
     
+    /**
+     * Ezzel a metódussal lehet fríssiteni a pontszámot, amikor megnyitjuk a top
+     * Listet
+     */
     public void refreshTopList() {
         _scoreList.removeAll();   
         _scorers.removeAll(_scorers);

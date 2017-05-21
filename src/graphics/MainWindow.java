@@ -85,8 +85,8 @@ public class MainWindow extends JFrame {
     }
     
     /**
-     *
-     * @param args
+     * A program fő függvénye. Itt kezdődik minden
+     * @param args a program argumentumai. Bármennyi lehet a program nem nézi őket
      */
     public static void main(String[] args) {
         final MainWindow mainWindow = new MainWindow("Tetris");

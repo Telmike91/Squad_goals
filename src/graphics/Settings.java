@@ -10,7 +10,6 @@ import model.PieceType;
 
 /**
  * Ezen a grafikai felületen lehet beállítani a színeket.
- * 
  */
 public class Settings extends JPanel {
     private final String[] pieces;

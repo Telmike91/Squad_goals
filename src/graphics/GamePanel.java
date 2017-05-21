@@ -15,11 +15,6 @@ import model.PieceType;
 /**
  * A játék grafikus felülete. Null layoutot alkalmazunk, és a graphicssal rajzoljuk
  * ki az Scoreboardot illetve a játékmezőt
- * 
- * TODO
- * <ul>
- * <li>_rows, _cols-t lehessen módosítani a settingsből</li>
- * </ul>
  */
 public class GamePanel extends JPanel {
 
@@ -30,6 +25,10 @@ public class GamePanel extends JPanel {
     private Field[][] _field;
     private boolean _gameOver = false;
 
+    /**
+     * Egyszerű konstruktor
+     * @param w 
+     */
     public GamePanel(MainWindow w) {        
         _return = new JButton("Return");
         _controller = new GameController(this, _rows, _cols);
@@ -44,10 +43,17 @@ public class GamePanel extends JPanel {
         super.add(_return);
     }
 
+    /**
+     * Egyszerűen a gameOvert igazzá teszi
+     */
     public void gameOver() {
         _gameOver = true;
     }
     
+    /**
+     * Ezzel a függvénnyel rajzoljuk ki a táblát és a scoreBoardot
+     * @param g A paintComponent viselkedéséből jövő Graphics. Ezáltal rajzolunk az ablakra
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);        

@@ -26,6 +26,12 @@ public class GameController implements ActionListener,
     private final int _cols;
     private int _score;
 
+    /**
+     * Konstruktor. Beállítja a megfelelő mezőket és inicializálja a random Tömböt
+     * @param gp a játék grafikus felületének referenciája
+     * @param rows hány sorból áll a játék
+     * @param cols Hány oszlopból áll a játék
+     */
     public GameController(GamePanel gp, int rows, int cols) {
         _rows = rows;
         _cols = cols;
@@ -45,6 +51,10 @@ public class GameController implements ActionListener,
         return _model.getFields();
     }
     
+    /**
+     * A lenyomott gombtól függően mozgatjuk a jelenlegi Piece-t
+     * @param e ebből nyerjük ki hogy melyik gomb került lenyomásra
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         // DOWN : 40
@@ -95,11 +105,19 @@ public class GameController implements ActionListener,
         }
     }
 
+    /**
+     * Nem csinál semmit csak az implementálásból jön
+     * @param e Az implementálásból jövő paraméter
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         
     }
-
+    
+    /**
+     * Egyedül a lefele gomb felengedését figyeljük, és lelassítjuk a Piece mozgását
+     * @param e Az implementálásból jövő paraméter
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()) {
@@ -119,8 +137,12 @@ public class GameController implements ActionListener,
         return _score;
     }
 
+    /**
+     * A timerből jövő action
+     * @param e Az actionPerformed implementálásból jövő paraméter
+     */
     @Override
-    public void actionPerformed(ActionEvent e) {              
+    public void actionPerformed(ActionEvent e) {                      
         if(!_model.move()) {
             int temp = _model.clearRows();
             if(temp > 0) {
@@ -162,6 +184,10 @@ public class GameController implements ActionListener,
         }
     }
 
+    /**
+     * Amikor újra focus-t kap azaz visszalépünk a játékba, elindítjuk a timert
+     * @param e 
+     */
     @Override
     public void focusGained(FocusEvent e) {
         _timer.start();
