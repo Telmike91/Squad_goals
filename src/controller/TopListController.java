@@ -32,7 +32,7 @@ public class TopListController {
     /**
      * Lekérdezzük az adatbázisból a felhasználók adatai
      *
-     * @return ArrayList<Player> az adatbázisban szereplő felhasználók adatai
+     * @return az adatbázisban szereplő felhasználók adatai
      */
     public ArrayList<Player> getScores() {
         ArrayList<Player> players = new ArrayList<>();

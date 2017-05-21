@@ -24,7 +24,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Egyszerű konstruktor
-     * @param w 
+     * @param w A főablak referenciája
      */
     public GamePanel(MainWindow w) {        
         _return = new JButton("Return");
@@ -144,7 +144,6 @@ public class GamePanel extends JPanel {
 
     /**
      * Ezzel fogjuk elkezdeni a játékot, illetve újrakezdeni, ha már befejeztünk egyet
-     * @param colors - A settingsben kitöltött színeket adjuk át
      */
     public void startGame() {
         _gameOver = false;

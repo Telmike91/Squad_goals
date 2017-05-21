@@ -207,7 +207,7 @@ public class GameController implements ActionListener,
 
     /**
      * Amikor újra focus-t kap azaz visszalépünk a játékba, elindítjuk a timert
-     * @param e 
+     * @param e a focus implementációjából jövő paraméter
      */
     @Override
     public void focusGained(FocusEvent e) {

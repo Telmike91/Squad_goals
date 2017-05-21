@@ -44,7 +44,7 @@ public class Table {
     /**
      * Bemásolja a blokkot a képernyő legtetejére, próbálva lehető legközépebbre
      * helyezni
-     *
+     * @param piece Melyik piece-t helyezzük a táblára
      * @return Igaz, ha behelyezhető különben hamis
      */
     public boolean enterPiece(Piece piece) {
