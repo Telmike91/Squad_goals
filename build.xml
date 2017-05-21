@@ -2,9 +2,11 @@
    <project xmlns:ivy="antlib:org.apache.ivy.ant" name="Tetris" default="run">
    <property name="build.dir" value="classes" />
    <property name="src.dir" value="${basedir}" />
+   <property name="doc.dir" value="javadoc" />
    <property name="ivy.install.version" value="2.4.0"/>
    <property name="ivy.jar.dir" value="${basedir}/ivy"/>
    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+   <property name="library.dir" value="lib" />
    
    <target name="download-ivy" unless="skip.download">
 		<mkdir dir="${ivy.jar.dir}"/>
@@ -22,9 +24,8 @@
       <mkdir dir="${build.dir}"/>
 	  <ivy:retrieve />
 	  <path id="lib.path.id">
-			<fileset dir="lib" includes="*.jar"/>
+			<fileset dir="${library.dir}" includes="*.jar"/>
 		</path>
-	<!--<ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" pathid="lib.path.id" inline="true"/>-->
       <javac destdir="${build.dir}" source="8" target="8">
          <src path="${src.dir}"/>
 		<classpath>
@@ -34,12 +35,48 @@
       </javac>
    </target>
    
-   <target name="clean" >
+   <target name="clean-javadoc" depends="javadoc-check" if="javadoc.exists">
+   <echo>Deleteing Javadocs</echo>
+	<delete file="javadoc.jar" />
+	<delete>
+		<fileset dir="${doc.dir}">
+			<include name="**/*.*" />
+		</fileset>
+	</delete>
+	<delete dir="${doc.dir}" />
+   </target>
+   
+     <target name="javadoc-check">
+    <condition property="javadoc.exists">
+      <available file="${doc.dir}" type="dir"/>
+    </condition>
+  </target>
+  
+  <target name="check-compile">
+	    <condition property="compile.exists">
+      <available file="${build.dir}" type="dir"/>
+    </condition>
+  </target>
+   
+   <target name="clean" depends="check-compile" if="compile.exists">
+   <echo>Cleaning up</echo>
 		<delete>
 			<fileset dir="${build.dir}">
 				<include name="**/*.class"/>
 			</fileset>
-		</delete>
+		</delete>		
+		<delete>
+			<fileset dir="${ivy.jar.dir}">
+				<include name="**/*.*"/>
+			</fileset>
+		</delete>	
+		<delete>
+			<fileset dir="${library.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</delete>	
+		<delete dir="${ivy.jar.dir}" />
+		<delete dir="${library.dir}" />
 		<delete file="Tetris.jar" />
 		<delete dir="${build.dir}" />
    </target>
@@ -48,6 +85,18 @@
 	   <java fork="true" jar="Tetris.jar">
 
 	   </java>
+   </target>
+   
+   <target name="javadoc" >
+	<delete dir="${doc.dir}" />
+	<mkdir dir="${doc.dir}" />
+		<javadoc destdir="${doc.dir}">
+			<fileset dir="${src.dir}" />
+		</javadoc>
+    <jar
+        basedir="${doc.dir}"
+        compress="${jar.compress}"
+        jarfile="javadoc.jar" />
    </target>
    
 	<target name="createJar" description="jars" depends="build">
