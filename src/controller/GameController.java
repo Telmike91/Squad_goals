@@ -63,12 +63,14 @@ public class GameController implements ActionListener,
             case 69:
                 if(!_gameOver) {
                     _model.flip();
+                    _gp.repaint();
                 }
                 break;
             case 16:
             case 81:
                 if(!_gameOver) {
                     _model.flip();
+                    _gp.repaint();
                 }
                 break;
             case 65:
