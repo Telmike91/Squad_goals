@@ -1,17 +1,40 @@
 <?xml version="1.0"?>
-   <project name="Tetris" default="build">
+   <project xmlns:ivy="antlib:org.apache.ivy.ant" name="Tetris" default="run">
    <property name="build.dir" value="classes" />
    <property name="src.dir" value="${basedir}" />
+   <property name="ivy.install.version" value="2.4.0"/>
+   <property name="ivy.jar.dir" value="${basedir}/ivy"/>
+   <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+   
+   <target name="download-ivy" unless="skip.download">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<echo message="installing ivy..."/>
+	<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+</target>
+<target name="install-ivy" depends="download-ivy" description="--> install ivy">
+<path id="ivy.lib.path">
+<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+</path>
+	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+</target>
 	
    <target name="build" description="Compile source tree java files">
       <mkdir dir="${build.dir}"/>
+	  <ivy:retrieve />
+	  <path id="lib.path.id">
+			<fileset dir="lib" includes="*.jar"/>
+		</path>
+	<!--<ivy:cachepath organisation="commons-lang" module="commons-lang" revision="2.1" pathid="lib.path.id" inline="true"/>-->
       <javac destdir="${build.dir}" source="8" target="8">
          <src path="${src.dir}"/>
-		 <classpath path="${basedir}" />
+		<classpath>
+			<path refid="lib.path.id"/>
+			<path location="${build.dir}"/>
+		</classpath>
       </javac>
    </target>
    
-   <target name="clean">
+   <target name="clean" >
 		<delete>
 			<fileset dir="${build.dir}">
 				<include name="**/*.class"/>
@@ -21,7 +44,7 @@
 		<delete dir="${build.dir}" />
    </target>
    
-   <target name="run" depends="createJar">
+   <target name="run" depends="install-ivy, build, createJar">
 	   <java fork="true" jar="Tetris.jar">
 
 	   </java>
@@ -31,9 +54,8 @@
 		<jar jarfile="Tetris.jar" basedir="${build.dir}"  includes="**/*.class">
 			<manifest>
 				<attribute name="Main-Class" value="graphics.MainWindow" />
-				<attribute name="Class-Path" value="sqlite-jdbc-3.18.0.jar"/>
+				<attribute name="Class-Path" value="lib/sqlite-jdbc-3.18.0.jar"/>
 			</manifest>
 		</jar>
-	</target>
-   
+	</target>   
 </project>

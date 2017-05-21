@@ -1,0 +1,6 @@
+<ivy-module version="2.4">
+    <info organisation="org.apache" module="hello-ivy"/>
+    <dependencies>
+		<dependency org="org.xerial" name="sqlite-jdbc" rev="3.18.0"/>
+    </dependencies>
+</ivy-module>
