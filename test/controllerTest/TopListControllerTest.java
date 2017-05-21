@@ -16,14 +16,15 @@ public class TopListControllerTest {
     }
     
     @Test
-    public void getScoresTest() {
+    public void getScoresTest() throws Exception {
+        System.out.println("TEST");
         topListController.updateScore("Anna", 1000);
         topListController.updateScore("Nem Anna", 2000);
         topListController.updateScore("Rih Anna", 7000);
         ArrayList<Player> result = topListController.getScores();
         
-        assertEquals("Az enterPiece() tele volt, amikor nem kellett volna." ,"Anna", result.get(0).getName());
-        assertEquals("Az enterPiece() tele volt, amikor nem kellett volna." ,2000, result.get(0).getScore());
+        assertEquals("Az enterPiece() tele volt, amikor nem kellett volna." , "Rih Anna", result.get(0).getName());
+        assertEquals("Az enterPiece() tele volt, amikor nem kellett volna." , 7000, result.get(0).getScore());
         
     }
 
