@@ -1,8 +1,8 @@
 package model;
 
 /**
- * Ebben az osztályban tároljuk a játékos nevét és pontszámát.
- * 
+ * Ebben az osztályban tároljuk a játékos nevét és pontszámát. Ez az adatbázis
+ * nál lesz fontos
  */
 public class Player {
     private final String _name;

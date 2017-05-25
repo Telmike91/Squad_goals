@@ -11,6 +11,11 @@ public class Field {
     private int y;
     private boolean isMoveable;
 
+    /**
+     * Létrehozza a tábla alapegységét az egyik mezőt
+     * @param x Az x koordináta
+     * @param y Az y koordináta
+     */
     public Field(int x, int y) {
         this.fieldState = FieldState.EMPTY;
         this.color = PieceColor.DEFAULT;

@@ -5,7 +5,7 @@ import java.awt.*;
 
 /**
  * <p>
- * The main window of the program.
+ * A főablaka a programnak
  * </p>
  */
 public class MainWindow extends JFrame {
@@ -15,8 +15,8 @@ public class MainWindow extends JFrame {
     private JPanel _currPanel;
     
     /**
-     * Creates the main window. 
-     * @param name name of the window. In this case it should be "Tetris"     
+     * Létrehozza a főablakot
+     * @param name A főablak neve. Ezesetben "Tetris"    
      */
     public MainWindow(String name) {
         super(name);         
@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
     }
     
     /**
-     * No parameters required. Initializes the mainWindow
+     * Inicializálja a főablakot
      */
     public void init() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);       
@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
         this._menuPanel = new Menu(this);        
         this._currPanel = _menuPanel;
         this._topListPanel = new TopList(this);
-        this._gamePanel = new GamePanel(this);        
+        this._gamePanel = new GamePanel(this, _topListPanel.getController());        
         _gamePanel.setFocusable(true);  
         add(_menuPanel, BorderLayout.CENTER);     
                 
@@ -41,9 +41,8 @@ public class MainWindow extends JFrame {
     } 
             
     /**
-     * 
-     * @param which "which" describes which panel should the program change to
-     * possible values:
+     * Az ablak változtatás metódusa.
+     * @param which Ebbe írjuk le melyik ablakra szeretnénk váltani. Lehetséges értékek
      * <ul>
      *  <li>menu</li>
      *  <li>topList</li>

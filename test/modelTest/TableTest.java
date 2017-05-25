@@ -245,6 +245,6 @@ public class TableTest {
                 fields[i][j].setColor(PieceColor.GREEN);
             }
         }
-        assertEquals("Nem jol szamolja ki a pontszamot.",6400, table.clearRows());
+        assertEquals("Nem jol szamolja ki a pontszamot.", 1500, table.clearRows());
     }
 }

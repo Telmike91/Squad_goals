@@ -14,6 +14,11 @@ public class Table {
     private Field[][] fields;
     private int rotation;
 
+    /**
+     * Létrehozza a táblát
+     * @param height A tábla magassága
+     * @param width A tábla szélessége
+     */
     public Table(int height, int width) {
         this.height = height;
         this.width = width;

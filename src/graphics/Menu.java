@@ -16,8 +16,8 @@ public class Menu extends JPanel {
 
     
     /**
-     * 
-     * @param w - a főablak referenciája, hogy a changePanel-t megtudjuk hívni
+     * Létrehozza a főmenüt
+     * @param w a főablak referenciája, hogy a changePanel-t megtudjuk hívni
      */
     public Menu(MainWindow w) {      
         _menuText = new JLabel("Tetris");

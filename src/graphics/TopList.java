@@ -58,7 +58,14 @@ public class TopList extends JPanel {
             c.gridy = i;
             _scoreList.add(l, c);
             i++;
-        }
-        
+        }        
+    }
+    
+    /**
+     * Egy egyszerű Getter
+     * @return Visszaadja a controller referenciáját
+     */
+    public TopListController getController() {
+        return _topListController;
     }
 }

@@ -13,6 +13,11 @@ public class Piece {
     private int maxHeight;
     private int maxWidth;
 
+    /**
+     * Létrehozza a Piece-t
+     * @param pieceCoordinates A Piece relatív koordinátái
+     * @param color A Piece-nek a színe.
+     */
     public Piece(ArrayList<Coordinate> pieceCoordinates, PieceColor color) {
         this.pieceCoordinates = pieceCoordinates;
         this.color = color;

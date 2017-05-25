@@ -26,7 +26,6 @@ public class TopListController {
             System.exit(0);
         }
         System.out.println("Opened database successfully");
-        this.updateScore("test4", 1000);
     }
 
     /**
@@ -58,9 +57,10 @@ public class TopListController {
      */
     public void updateScore(String nev, int pont) {
         try {
-            System.out.println("testing");
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM toplist where name=\"" + nev + "\";");  
+            ResultSet rs = stmt.executeQuery("SELECT lower(name), score "
+                    + "FROM toplist "
+                    + "WHERE LOWER(name) = LOWER(\"" + nev + "\");");  
             if (rs.next()) {
                 //Benne van az adatbázisban, csak updatelni kell a pontszámat, feltéve ha az nagyobb mint az adatbazisban szereplő
                 int result = rs.getInt(2);
@@ -70,7 +70,6 @@ public class TopListController {
                 }
             } else {
                 //Nincs még ilyen ember az adatbazisban , 1-1 ben beletesszük
-                                                                System.out.println("test");
                 stmt.executeUpdate("insert into toplist values (\"" + nev + "\", " + pont + ")");
 
             }
