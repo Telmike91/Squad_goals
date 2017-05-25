@@ -62,11 +62,11 @@ public class TopListController {
                     + "FROM toplist "
                     + "WHERE LOWER(name) = LOWER(\"" + nev + "\");");  
             if (rs.next()) {
-                //Benne van az adatbázisban, csak updatelni kell a pontszámat, feltéve ha az nagyobb mint az adatbazisban szereplő
+                //Benne van az adatbázisban, csak updatelni kell a pontszámat, 
+                // feltéve ha az nagyobb mint az adatbazisban szereplő
                 int result = rs.getInt(2);
                 if (result < pont) {
-                    stmt.executeUpdate("update toplist set score = " + pont + " where name = " + nev);
-
+                    stmt.executeUpdate("update toplist set score = " + pont + " where lower(name) = lower(\"" + nev + "\")");
                 }
             } else {
                 //Nincs még ilyen ember az adatbazisban , 1-1 ben beletesszük
